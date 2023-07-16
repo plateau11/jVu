@@ -2,79 +2,39 @@
 <html>
 <head>
   <title>Input Fields to JSON</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
   <style>
-    /* CSS for the form container */
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+    /* Responsive styles */
+    body {
+      font-size: 16px;
     }
 
-    /* Media query for mobile devices */
-    @media (max-width: 480px) {
-      .form-container {
-        max-width: 320px;
-      }
+    h1 {
+      font-size: 24px;
+    }
+
+    label, input, button {
+      width: 100%;
+      margin-bottom: 10px;
     }
   </style>
+  <script>
+    // Your JavaScript code here
+  </script>
 </head>
 <body>
-  <div class="form-container">
-    <h1>Input Fields to JSON</h1>
-    <label for="field1">Physics:</label>
-    <input type="text" id="field1"><br><br>
+  <h1>Input Fields to JSON</h1>
+  <label for="field1">Physics:</label>
+  <input type="text" id="field1">
 
-    <label for="field2">Chemistry:</label>
-    <input type="text" id="field2"><br><br>
+  <label for="field2">Chemistry:</label>
+  <input type="text" id="field2">
 
-    <label for="field3">DS&amp;AL:</label>
-    <input type="text" id="field3"><br><br>
+  <label for="field3">DS&amp;AL:</label>
+  <input type="text" id="field3">
 
-    <button onclick="handleButtonClick()">Convert to JSON</button>
-
-    <p>hello world</p>
-  </div>
-
-  <script>
-    function convertToJson() {
-      var data = {};
-
-      // Get the values from the input fields
-      data.Physics = document.getElementById('field1').value;
-      data.Chemistry = document.getElementById('field2').value;
-      data.DsAL = document.getElementById('field3').value;
-
-      // Convert the data object to JSON
-      var json = JSON.stringify(data);
-
-      // Return the JSON object
-      return json;
-    }
-
-    function handleButtonClick() {
-      var json = convertToJson();
-
-      // Send the JSON object to your Node.js app
-      fetch('/processJson', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: json
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log('JSON object sent to server successfully!');
-          // Redirect to the chart page
-          window.location.href = '/chart';
-        } else {
-          console.error('Failed to send JSON object to server.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    }
-  </script>
+  <button onclick="handleButtonClick()">Convert to JSON</button>
 </body>
 </html>

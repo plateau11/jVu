@@ -2,61 +2,52 @@
 <html>
 <head>
   <title>Chart Page</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* CSS for the chart container */
-    .chart-container {
-      width: 100%;
-      max-width: 600px;
-      height: 400px;
-      margin: 0 auto;
-      padding: 20px;
+    /* Responsive styles */
+    body {
+      font-size: 16px;
     }
 
-    /* CSS for the canvas */
+    h1 {
+      font-size: 24px;
+    }
+
+    .chart-container {
+      max-width: 100%;
+      height: auto;
+    }
+
     canvas {
       width: 100% !important;
-      height: 100% !important;
+      height: auto !important;
     }
 
-    /* CSS for data values */
-    .data-values {
-      margin-top: 20px;
+    ul {
+      padding-left: 20px;
     }
 
-    /* Media query for mobile devices */
-    @media (max-width: 480px) {
-      .chart-container {
-        max-width: 320px;
-        height: 240px;
-      }
+    li {
+      margin-bottom: 5px;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Your JavaScript code here
+  </script>
 </head>
 <body>
   <div class="chart-container">
     <canvas id="chartCanvas"></canvas>
   </div>
 
-  <div class="data-values">
-    <h2>Data Values:</h2>
-    <ul>
-      <% for (var i = 0; i < chartConfig.data.labels.length; i++) { %>
-        <li><strong><%= chartConfig.data.labels[i] %>:</strong> <%= chartConfig.data.datasets[0].data[i] %></li>
-      <% } %>
-    </ul>
-  </div>
+  <h2>Data Values:</h2>
+  <ul>
+    <% for (var i = 0; i < chartConfig.data.labels.length; i++) { %>
+      <li><strong><%= chartConfig.data.labels[i] %>:</strong> <%= chartConfig.data.datasets[0].data[i] %></li>
+    <% } %>
+  </ul>
 
   <a href="/input">Go Back to Input Form</a>
-
-  <script>
-    var ctx = document.getElementById('chartCanvas').getContext('2d');
-    var chartConfig = <%- JSON.stringify(chartConfig) %>;
-
-    // Set y-axis maximum value to 100
-    chartConfig.options.scales.y.max = 100;
-
-    new Chart(ctx, chartConfig);
-  </script>
 </body>
 </html>
