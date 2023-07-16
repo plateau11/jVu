@@ -9,12 +9,19 @@
       width: 100%;
       max-width: 600px;
       height: 400px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     /* CSS for the canvas */
     canvas {
       width: 100% !important;
       height: 100% !important;
+    }
+
+    /* CSS for data values */
+    .data-values {
+      margin-top: 20px;
     }
 
     /* Media query for mobile devices */
@@ -31,12 +38,14 @@
     <canvas id="chartCanvas"></canvas>
   </div>
 
-  <h2>Data Values:</h2>
-  <ul>
-    <% for (var i = 0; i < chartConfig.data.labels.length; i++) { %>
-      <li><strong><%= chartConfig.data.labels[i] %>:</strong> <%= chartConfig.data.datasets[0].data[i] %></li>
-    <% } %>
-  </ul>
+  <div class="data-values">
+    <h2>Data Values:</h2>
+    <ul>
+      <% for (var i = 0; i < chartConfig.data.labels.length; i++) { %>
+        <li><strong><%= chartConfig.data.labels[i] %>:</strong> <%= chartConfig.data.datasets[0].data[i] %></li>
+      <% } %>
+    </ul>
+  </div>
 
   <a href="/input">Go Back to Input Form</a>
 

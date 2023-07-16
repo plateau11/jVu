@@ -2,6 +2,37 @@
 <html>
 <head>
   <title>Input Fields to JSON</title>
+  <style>
+    /* CSS for the form container */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Media query for mobile devices */
+    @media (max-width: 480px) {
+      .form-container {
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Input Fields to JSON</h1>
+    <label for="field1">Physics:</label>
+    <input type="text" id="field1"><br><br>
+
+    <label for="field2">Chemistry:</label>
+    <input type="text" id="field2"><br><br>
+
+    <label for="field3">DS&amp;AL:</label>
+    <input type="text" id="field3"><br><br>
+
+    <button onclick="handleButtonClick()">Convert to JSON</button>
+  </div>
+
   <script>
     function convertToJson() {
       var data = {};
@@ -43,18 +74,5 @@
       });
     }
   </script>
-</head>
-<body>
-  <h1>Input Fields to JSON</h1>
-  <label for="field1">Physics:</label>
-  <input type="text" id="field1"><br><br>
-
-  <label for="field2">Chemistry:</label>
-  <input type="text" id="field2"><br><br>
-
-  <label for="field3">DS&amp;AL:</label>
-  <input type="text" id="field3"><br><br>
-
-  <button onclick="handleButtonClick()">Convert to JSON</button>
 </body>
 </html>
