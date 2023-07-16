@@ -52,11 +52,8 @@
     var ctx = document.getElementById('chartCanvas').getContext('2d');
     var chartConfig = <%- JSON.stringify(chartConfig) %>;
 
-    // Modify y-axis scales for mobile view
-    if (window.innerWidth <= 480) {
-      chartConfig.options.scales.yAxes[0].ticks.maxTicksLimit = 6;
-      chartConfig.options.scales.yAxes[0].ticks.stepSize = 20;
-    }
+    // Set y-axis maximum value to 100
+    chartConfig.options.scales.y.max = 100;
 
     new Chart(ctx, chartConfig);
   </script>
