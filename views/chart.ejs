@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chart Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* CSS for the chart container */
+    .chart-container {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+    }
+
+    /* CSS for the canvas */
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Media query for mobile devices */
+    @media (max-width: 480px) {
+      .chart-container {
+        max-width: 320px;
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <canvas id="chartCanvas"></canvas>
+  </div>
+
+  <h2>Data Values:</h2>
+  <ul>
+    <% for (var i = 0; i < chartConfig.data.labels.length; i++) { %>
+      <li><strong><%= chartConfig.data.labels[i] %>:</strong> <%= chartConfig.data.datasets[0].data[i] %></li>
+    <% } %>
+  </ul>
+
+  <a href="/input">Go Back to Input Form</a>
+
+  <script>
+    var ctx = document.getElementById('chartCanvas').getContext('2d');
+    var chartConfig = <%- JSON.stringify(chartConfig) %>;
+
+    // Set y-axis maximum value to 100
+    chartConfig.options.scales.y.max = 100;
+
+    new Chart(ctx, chartConfig);
+  </script>
+</body>
+</html>

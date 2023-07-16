@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Fields to JSON</title>
+  <script>
+    function convertToJson() {
+      var data = {};
+
+      // Get the values from the input fields
+      data.Physics = document.getElementById('field1').value;
+      data.Chemistry = document.getElementById('field2').value;
+      data.DsAL = document.getElementById('field3').value;
+
+      // Convert the data object to JSON
+      var json = JSON.stringify(data);
+
+      // Return the JSON object
+      return json;
+    }
+
+    function handleButtonClick() {
+      var json = convertToJson();
+
+      // Send the JSON object to your Node.js app
+      fetch('/processJson', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: json
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('JSON object sent to server successfully!');
+          // Redirect to the chart page
+          window.location.href = '/chart';
+        } else {
+          console.error('Failed to send JSON object to server.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Input Fields to JSON</h1>
+  <label for="field1">Physics:</label>
+  <input type="text" id="field1"><br><br>
+
+  <label for="field2">Chemistry:</label>
+  <input type="text" id="field2"><br><br>
+
+  <label for="field3">DS&amp;AL:</label>
+  <input type="text" id="field3"><br><br>
+
+  <button onclick="handleButtonClick()">Convert to JSON</button>
+</body>
+</html>
