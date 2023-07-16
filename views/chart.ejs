@@ -4,39 +4,37 @@
   <title>Chart Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Responsive styles */
     body {
+      font-family: Arial, sans-serif;
       font-size: 16px;
+      margin: 0;
+      padding: 20px;
     }
 
     h1 {
       font-size: 24px;
+      margin-bottom: 20px;
     }
 
     .chart-container {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      margin-bottom: 20px;
     }
 
-    canvas {
-      width: 100% !important;
-      height: auto !important;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 5px;
+    /* Media query for mobile devices */
+    @media (max-width: 480px) {
+      .chart-container {
+        max-width: 320px;
+        height: 240px;
+      }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // Your JavaScript code here
-  </script>
 </head>
 <body>
+  <h1>Chart Page</h1>
   <div class="chart-container">
     <canvas id="chartCanvas"></canvas>
   </div>
@@ -49,5 +47,15 @@
   </ul>
 
   <a href="/input">Go Back to Input Form</a>
+
+  <script>
+    var ctx = document.getElementById('chartCanvas').getContext('2d');
+    var chartConfig = <%- JSON.stringify(chartConfig) %>;
+
+    // Set y-axis maximum value to 100
+    chartConfig.options.scales.y.max = 100;
+
+    new Chart(ctx, chartConfig);
+  </script>
 </body>
 </html>

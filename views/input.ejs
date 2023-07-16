@@ -3,37 +3,97 @@
 <head>
   <title>Input Fields to JSON</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
   <style>
-    /* Responsive styles */
     body {
+      font-family: Arial, sans-serif;
       font-size: 16px;
+      margin: 0;
+      padding: 20px;
     }
 
     h1 {
       font-size: 24px;
+      margin-bottom: 20px;
     }
 
-    label, input, button {
-      width: 100%;
+    label {
+      display: block;
       margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
     }
   </style>
   <script>
-    // Your JavaScript code here
+    function convertToJson() {
+      var data = {};
+
+      // Get the values from the input fields
+      data.Physics = document.getElementById('field1').value;
+      data.Chemistry = document.getElementById('field2').value;
+      data.DsAL = document.getElementById('field3').value;
+
+      // Convert the data object to JSON
+      var json = JSON.stringify(data);
+
+      // Return the JSON object
+      return json;
+    }
+
+    function handleButtonClick() {
+      var json = convertToJson();
+
+      // Send the JSON object to your Node.js app
+      fetch('/processJson', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: json
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('JSON object sent to server successfully!');
+          // Redirect to the chart page
+          window.location.href = '/chart';
+        } else {
+          console.error('Failed to send JSON object to server.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
   </script>
 </head>
 <body>
   <h1>Input Fields to JSON</h1>
   <label for="field1">Physics:</label>
-  <input type="text" id="field1">
+  <input type="text" id="field1"><br><br>
 
   <label for="field2">Chemistry:</label>
-  <input type="text" id="field2">
+  <input type="text" id="field2"><br><br>
 
   <label for="field3">DS&amp;AL:</label>
-  <input type="text" id="field3">
+  <input type="text" id="field3"><br><br>
 
   <button onclick="handleButtonClick()">Convert to JSON</button>
 </body>
