@@ -90,7 +90,14 @@ app.post('/input', (req, res) => {
   res.redirect('/chart');
 });
 
-// Start the server
-app.listen(3001, () => {
-  console.log('Server is running on http://localhost:3001');
+// Route handler for the homepage (root URL)
+app.get('/', (req, res) => {
+  res.render('input');
 });
+
+const PORT = process.env.PORT || 3000;
+
+
+ app.listen(PORT,()=>{
+     console.log('server is starting in port:' + PORT)
+ })
